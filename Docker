@@ -1,0 +1,10 @@
+FROM ubuntu:20.03
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY sources.list /etc/apt/sources.list
+RUN apt-get update \
+ && apt-get -yq install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev \
+    libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm \
+    dos2unix recode clang-format python3 python3-pip git \
+ && rm -rf /var/lib/apt/lists/*
+RUN pip3 install black==20.8b1 pygments
